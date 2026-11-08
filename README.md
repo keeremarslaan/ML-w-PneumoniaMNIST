@@ -1,5 +1,6 @@
 # Makine Öğrenmesi ile Zatürre Tespiti Yapılması Üzerinde Görüntü Bozukluklarının Etkisi
 
+<<<<<<< HEAD
 
 > **Araştırma odağı:** Görüntü kalitesi değiştiğinde bir modelin başarısı, verdiği olasılıklar ve kararını açıklayan haritalar nasıl değişir?
 
@@ -30,18 +31,23 @@ Deneyin çalışma merkezi `study.ipynb`, ayarların giriş noktası notebook i�
 Bu depoda notebook, bağımlılık listesi ve `presentation.pptx` bulunur. Aşağıdaki raporda anılan `outputs/`, `runs/`, `config.yaml` ve sonuç arşivleri mevcut depo kopyasında yer almamaktadır. İlgili yollar, raporlanan çalıştırmanın çıktı düzenini anlatır; sonuç tabloları ve kaynaklar mevcut rapordan aynen korunmuştur.
 
 ---
+=======
+>>>>>>> 53fd52755820731acc4de4510b82f0cacf2bb7da
 
 Bu projede gürültü, bulanıklık ve düşük kontrastın zatürre sınıflandırmasına etkisi incelenmiştir.
 Sıfırdan eğitilen CNN ile ImageNet ağırlıkları kullanılarak fine-tune edilen ResNet18 karşılaştırılmıştır.
 Classification metrikleri, olasılık kalibrasyonu ve Grad-CAM haritaları beraber değerlendirilmiştir.
 Ayrı bir dayanıklı training ile bozulmuş görüntülerdeki başarının ve temiz görüntülerdeki değişimin ölçülmesi amaçlanmıştır.
 
+<<<<<<< HEAD
 **Buradaki sonuçlar, `outputs/` ve iki sunum 8 Kasım 2026 tarihinde tamamlanan yeni Colab çalıştırmasına aittir.**
 Dört baseline ve üç dayanıklı training baştan yapılmıştır. Önceki Kaggle sonuçları ayrı arşivde korunur.
 Yeni tekrar, baseline test verisi daha önce görüldüğü için dayanıklılık çalışmasını bağımsız doğrulama haline getirmez.
 
 <a id="calistirma"></a>
 
+=======
+>>>>>>> 53fd52755820731acc4de4510b82f0cacf2bb7da
 ## 1. Notebook'un çalıştırılması
 
 1. Sadece `study.ipynb` dosyasını [Google Colab](https://colab.research.google.com/) üzerine yükleyin.
