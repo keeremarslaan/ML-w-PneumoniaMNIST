@@ -1,7 +1,5 @@
 # Makine Öğrenmesi ile Zatürre Tespiti Yapılması Üzerinde Görüntü Bozukluklarının Etkisi
 
-<<<<<<< HEAD
-
 > **Araştırma odağı:** Görüntü kalitesi değiştiğinde bir modelin başarısı, verdiği olasılıklar ve kararını açıklayan haritalar nasıl değişir?
 
 Bu depo, PneumoniaMNIST üzerinde bu soruyu tek bir notebook akışıyla incelemek için hazırlanmıştır. Küçük bir CNN ile fine-tune edilen bir ResNet18 karşılaştırılır; ardından görüntü bozulmaları, olasılık kalibrasyonu ve dayanıklılık eğitimi birlikte değerlendirilir.
@@ -32,14 +30,13 @@ Bu depoda notebook, bağımlılık listesi ve `presentation.pptx` bulunur. Aşa�
 
 ---
 =======
->>>>>>> 53fd52755820731acc4de4510b82f0cacf2bb7da
 
 Bu projede gürültü, bulanıklık ve düşük kontrastın zatürre sınıflandırmasına etkisi incelenmiştir.
 Sıfırdan eğitilen CNN ile ImageNet ağırlıkları kullanılarak fine-tune edilen ResNet18 karşılaştırılmıştır.
 Classification metrikleri, olasılık kalibrasyonu ve Grad-CAM haritaları beraber değerlendirilmiştir.
 Ayrı bir dayanıklı training ile bozulmuş görüntülerdeki başarının ve temiz görüntülerdeki değişimin ölçülmesi amaçlanmıştır.
 
-<<<<<<< HEAD
+
 **Buradaki sonuçlar, `outputs/` ve iki sunum 8 Kasım 2026 tarihinde tamamlanan yeni Colab çalıştırmasına aittir.**
 Dört baseline ve üç dayanıklı training baştan yapılmıştır. Önceki Kaggle sonuçları ayrı arşivde korunur.
 Yeni tekrar, baseline test verisi daha önce görüldüğü için dayanıklılık çalışmasını bağımsız doğrulama haline getirmez.
@@ -47,7 +44,7 @@ Yeni tekrar, baseline test verisi daha önce görüldüğü için dayanıklılı
 <a id="calistirma"></a>
 
 =======
->>>>>>> 53fd52755820731acc4de4510b82f0cacf2bb7da
+
 ## 1. Notebook'un çalıştırılması
 
 1. Sadece `study.ipynb` dosyasını [Google Colab](https://colab.research.google.com/) üzerine yükleyin.
@@ -256,17 +253,17 @@ Tablolar kaydedilmiş yeni sonuçlardan alınmıştır; bu rapor güncellemesind
 
 </details>
 
-<a id="sinirliliklar"></a>
+<a id="sınırlılıklar"></a>
 
 ## 4. Sınırlılıklar
 
-Veri, düşük çözünürlüklü ve önceden işlenmiş röngten görüntülerinden oluşmaktadır.
+Veri, düşük çözünürlüklü ve önceden işlenmiş röntgen görüntülerinden oluşmaktadır.
 Küçük validation split birden fazla seçimde kullanılmıştır. Üç seed training değişimini sınırlı şekilde gösterir;
 tek sabit gürültü alanı farklı gürültü örnekleri arasındaki değişimi ölçmemektedir.
 Bozulma seviyeleri classlar arasında eşdeğer değildir. Grad-CAM kaba sonuçlar verir, dayanıklılık çalışması keşifsel olarak yapılmıştır.
 Bu sonuçlar klinik kullanım yeterliliği göstermemeketedir.
 
-<a id="ciktilar"></a>
+<a id="çıktılar"></a>
 
 ## 5. Dosyalar ve çalıştırma durumu
 
