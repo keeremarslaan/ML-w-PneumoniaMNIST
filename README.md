@@ -37,7 +37,7 @@ Classification metrikleri, olasılık kalibrasyonu ve Grad-CAM haritaları berab
 Ayrı bir dayanıklı training ile bozulmuş görüntülerdeki başarının ve temiz görüntülerdeki değişimin ölçülmesi amaçlanmıştır.
 
 
-**Buradaki sonuçlar, `outputs/` ve iki sunum 8 Kasım 2026 tarihinde tamamlanan yeni Colab çalıştırmasına aittir.**
+**Buradaki sonuçlar, `outputs/` ve sunum 8 Kasım 2026 tarihinde tamamlanan yeni Colab çalıştırmasına aittir.**
 Dört baseline ve üç dayanıklı training baştan yapılmıştır. Önceki Kaggle sonuçları ayrı arşivde korunur.
 Yeni tekrar, baseline test verisi daha önce görüldüğü için dayanıklılık çalışmasını bağımsız doğrulama haline getirmez.
 
