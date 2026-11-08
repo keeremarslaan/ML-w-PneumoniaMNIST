@@ -1,4 +1,5 @@
-# PneumoniaMNIST: görüntü kalitesi, classification ve kalibrasyon
+# Makine Öğrenmesi ile Zatürre Tespiti Yapılması Üzerinde Görüntü Bozukluklarının Etkisi
+
 
 Bu projede gürültü, bulanıklık ve düşük kontrastın zatürre sınıflandırmasına etkisi incelenmiştir.
 Sıfırdan eğitilen CNN ile ImageNet ağırlıkları kullanılarak fine-tune edilen ResNet18 karşılaştırılmıştır.
