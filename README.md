@@ -1,4 +1,35 @@
-# PneumoniaMNIST: görüntü kalitesi, classification ve kalibrasyon
+# Makine Öğrenmesi ile Zatürre Tespiti Yapılması Üzerinde Görüntü Bozukluklarının Etkisi
+
+
+> **Araştırma odağı:** Görüntü kalitesi değiştiğinde bir modelin başarısı, verdiği olasılıklar ve kararını açıklayan haritalar nasıl değişir?
+
+Bu depo, PneumoniaMNIST üzerinde bu soruyu tek bir notebook akışıyla incelemek için hazırlanmıştır. Küçük bir CNN ile fine-tune edilen bir ResNet18 karşılaştırılır; ardından görüntü bozulmaları, olasılık kalibrasyonu ve dayanıklılık eğitimi birlikte değerlendirilir.
+
+**Başlamak için:** [Çalıştırma rehberine](#calistirma) geçin. Deney tasarımını anlamak için [veri ve yöntemi](#yontem), bulguları incelemek için [sonuçları](#sonuclar) okuyun.
+
+### Okuma rehberi
+
+- [Kurulum ve notebook’un çalıştırılması](#calistirma)
+- [Veri, modeller ve değerlendirme yöntemi](#yontem)
+- [Grafikler, temel sonuçlar ve ayrıntılı ölçümler](#sonuclar)
+- [Çalışmanın sınırlılıkları](#sinirliliklar)
+- [Çıktılar ve çalıştırma kayıtları](#ciktilar)
+- [Kaynaklar ve kullanılan araçlar](#kaynaklar)
+
+### Deneyin mantığı
+
+1. **Temiz veriyle karşılaştırma:** CNN ve ResNet18 eğitilir; model ve checkpoint temiz validation AUROC ile seçilir.
+2. **Sabit seçimlerle değerlendirme:** Validation üzerinde belirlenen karar eşiği ve sıcaklık parametresi, temiz ve bozulmuş test görüntülerine uygulanır.
+3. **Birlikte yorumlama:** Sınıflandırma başarısı, olasılık kalibrasyonu ve Grad-CAM haritaları farklı sorulara yanıt verir; sonuçlar birlikte okunur.
+4. **Dayanıklılık karşılaştırması:** Bozulmalarla eğitilen model aynı seedler üzerinden baseline ile karşılaştırılır. Bu aşama keşifseldir.
+
+### Depoyu kullanırken
+
+Deneyin çalışma merkezi `study.ipynb`, ayarların giriş noktası notebook içindeki `cfg` sözlüğüdür. Yeni deney ayarları bu akış üzerinden yönetilir; üretilen ayar kopyaları ve sonuç kayıtları çalıştırmanın izlenebilmesini sağlar. Bağımlılıklar `requirements.txt` ile tanımlanır.
+
+Bu depoda notebook, bağımlılık listesi ve `presentation.pptx` bulunur. Aşağıdaki raporda anılan `outputs/`, `runs/`, `config.yaml` ve sonuç arşivleri mevcut depo kopyasında yer almamaktadır. İlgili yollar, raporlanan çalıştırmanın çıktı düzenini anlatır; sonuç tabloları ve kaynaklar mevcut rapordan aynen korunmuştur.
+
+---
 
 Bu projede gürültü, bulanıklık ve düşük kontrastın zatürre sınıflandırmasına etkisi incelenmiştir.
 Sıfırdan eğitilen CNN ile ImageNet ağırlıkları kullanılarak fine-tune edilen ResNet18 karşılaştırılmıştır.
@@ -8,6 +39,8 @@ Ayrı bir dayanıklı training ile bozulmuş görüntülerdeki başarının ve t
 **Buradaki sonuçlar, `outputs/` ve iki sunum 8 Kasım 2026 tarihinde tamamlanan yeni Colab çalıştırmasına aittir.**
 Dört baseline ve üç dayanıklı training baştan yapılmıştır. Önceki Kaggle sonuçları ayrı arşivde korunur.
 Yeni tekrar, baseline test verisi daha önce görüldüğü için dayanıklılık çalışmasını bağımsız doğrulama haline getirmez.
+
+<a id="calistirma"></a>
 
 ## 1. Notebook'un çalıştırılması
 
@@ -46,6 +79,8 @@ Tamamlanan trainingler sadece kod, ayarlar, ortam ve dosya kontrolleri eşleşir
 Uyuşmazlık varsa eski dosyaları koruyup inceleyin. Best checkpointler yarım kalan traininge devam etmek için optimizer durumu içermez.
 Bu komutlar çalıştırma yönergesidir; güncel sürümün yeniden tam çalıştırıldığı anlamına gelmez.
 
+<a id="yontem"></a>
+
 ## 2. Veri ve yöntem
 
 | Özellik | Kullanılan ayar |
@@ -79,6 +114,8 @@ Sensitivity zatürreli, specificity normal görüntülerin doğru bulunma oranı
 Precision, zatürre tahminlerinin ne kadarının doğru olduğunu; F1, precision ve sensitivity'nin birleşimini gösterir.
 Balanced accuracy, sensitivity ve specificity'nin ortalamasıdır. Youden's J = sensitivity + specificity − 1.
 Üç seedin ortalaması ve örneklem standart sapması (`ddof=1`) raporlanır; bu SD hasta bazında güven aralığı değildir.
+
+<a id="sonuclar"></a>
 
 ## 3. Grafikler ve temel sonuçlar
 
@@ -213,14 +250,17 @@ Tablolar kaydedilmiş yeni sonuçlardan alınmıştır; bu rapor güncellemesind
 
 </details>
 
+<a id="sinirliliklar"></a>
+
 ## 4. Sınırlılıklar
 
-Veri, düşük çözünürlüklü ve önceden işlenmiş çocuk röntgenlerinden oluşur.
-Hasta bağımsızlığı doğrulanmamıştır ve başka hastanede evaluation yapılmamıştır.
+Veri, düşük çözünürlüklü ve önceden işlenmiş röngten görüntülerinden oluşmaktadır.
 Küçük validation split birden fazla seçimde kullanılmıştır. Üç seed training değişimini sınırlı şekilde gösterir;
-tek sabit gürültü alanı farklı gürültü örnekleri arasındaki değişimi ölçmez.
-Bozulma seviyeleri aileler arasında eşdeğer değildir. Grad-CAM kabadır, dayanıklılık çalışması keşifseldir.
-Bu sonuçlar klinik kullanım yeterliliğini göstermez.
+tek sabit gürültü alanı farklı gürültü örnekleri arasındaki değişimi ölçmemektedir.
+Bozulma seviyeleri classlar arasında eşdeğer değildir. Grad-CAM kaba sonuçlar verir, dayanıklılık çalışması keşifsel olarak yapılmıştır.
+Bu sonuçlar klinik kullanım yeterliliği göstermemeketedir.
+
+<a id="ciktilar"></a>
 
 ## 5. Dosyalar ve çalıştırma durumu
 
@@ -240,6 +280,8 @@ Checkpoint ZIP'leri test öncesindeki ağırlık ve validation kayıtlarını; `
 Kayıtlı logitler, T ve threshold ile yeni inference yapmadan olasılık ve kararlar elde edilebilir.
 Veri, ağırlıklar ve cacheler Git/teslime dahil edilmez. Güncel CSV'lerdeki `runs/cache/` yolları indirilen Colab sonuç arşivine aittir;
 notebook başlangıcı için gerekli değildir.
+
+<a id="kaynaklar"></a>
 
 ## Kaynaklar ve kullanılan araçlar
 
